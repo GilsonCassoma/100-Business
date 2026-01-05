@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>100% Business</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+    }
+
+    header {
+      background: #111;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    .product-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .product-card button {
+      background: #25D366;
+      color: #fff;
+      border: none;
+      padding: 12px 15px;
+      border-radius: 5px;
+      font-size: 15px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .product-card button:hover {
+      background: #1ebe5d;
+    }
+
+    /* Botão flutuante WhatsApp */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
+      color: #fff;
+      padding: 15px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>100% Business</h1>
+  <p>os melhores produtos, com os melhores preços</p>
+</header>
+
+<main>
+  <section class="products">
+
+    <!-- Produto 1 -->
+    <div class="product-card">
+      <img src="https://via.placeholder.com/300x200" alt="Produto 1">
+      <h3>Produto Exemplo 1</h3>
+      <button onclick="falarWhatsApp('Produto Exemplo 1')">
+        Falar no WhatsApp
+      </button>
+    </div>
+
+    <!-- Produto 2 -->
+    <div class="product-card">
+      <img src="https://via.placeholder.com/300x200" alt="Produto 2">
+      <h3>Produto Exemplo 2</h3>
+      <button onclick="falarWhatsApp('Produto Exemplo 2')">
+        Falar no WhatsApp
+      </button>
+    </div>
+
+    <!-- Produto 3 -->
+    <div class="product-card">
+      <img src="https://via.placeholder.com/300x200" alt="Produto 3">
+      <h3>Produto Exemplo 3</h3>
+      <button onclick="falarWhatsApp('Produto Exemplo 3')">
+        Falar no WhatsApp
+      </button>
+    </div>
+
+  </section>
+</main>
+
+<!-- Botão geral WhatsApp -->
+<a class="whatsapp-btn"
+   href="https://wa.me/244972712174"
+   target="_blank">
+   💬 WhatsApp
+</a>
+
+<script>
+  function falarWhatsApp(produto) {
+    const numero = '244972712174';
+    const mensagem = `Olá! Gostaria de conversar sobre o produto: ${produto}`;
+    const link = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+    window.open(link, '_blank');
+  }
+</script>
+
+</body>
+</html>
