@@ -1,142 +1,81 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <title>100% Business</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      margin: 0;
-    }
-
-    header {
-      background: #111;
-      color: #fff;
-      padding: 20px;
-      text-align: center;
-    }
-
-    main {
-      max-width: 1100px;
-      margin: 30px auto;
-      padding: 0 20px;
-    }
-
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
-
-    .product-card {
-      background: #fff;
-      padding: 15px;
-      border-radius: 8px;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-
-    .product-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 6px;
-      margin-bottom: 10px;
-    }
-
-    .product-card h3 {
-      margin-bottom: 10px;
-    }
-
-    .product-card button {
-      background: #25D366;
-      color: #fff;
-      border: none;
-      padding: 12px 15px;
-      border-radius: 5px;
-      font-size: 15px;
-      cursor: pointer;
-      width: 100%;
-    }
-
-    .product-card button:hover {
-      background: #1ebe5d;
-    }
-
-    /* Botão flutuante WhatsApp */
-    .whatsapp-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #25D366;
-      color: #fff;
-      padding: 15px 20px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: bold;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100% Business | Produtos de Qualidade</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<header>
-  <h1>100% Business</h1>
-  <p>os melhores produtos, com os melhores preços</p>
-</header>
+    <!-- HEADER -->
+    <header class="header">
+        <h1>100% Business</h1>
+        <p>Seu parceiro confiável para produtos de qualidade e preços acessíveis</p>
+        <a class="btn" href="https://wa.me/244XXXXXXXXX" target="_blank">
+            Falar no WhatsApp
+        </a>
+    </header>
 
-<main>
-  <section class="products">
+    <!-- SOBRE -->
+    <section class="about">
+        <h2>Quem Somos</h2>
+        <p>
+            A <strong>100% Business</strong> é uma plataforma focada em oferecer produtos selecionados,
+            atendimento rápido e total confiança. Trabalhamos para garantir a melhor experiência de compra.
+        </p>
+    </section>
 
-    <!-- Produto 1 -->
-    <div class="product-card">
-      <img src="https://via.placeholder.com/300x200" alt="Produto 1">
-      <h3>Produto Exemplo 1</h3>
-      <button onclick="falarWhatsApp('Produto Exemplo 1')">
-        Falar no WhatsApp
-      </button>
-    </div>
+    <!-- PRODUTOS -->
+    <section class="products">
+        <h2>Nossos Produtos</h2>
 
-    <!-- Produto 2 -->
-    <div class="product-card">
-      <img src="https://via.placeholder.com/300x200" alt="Produto 2">
-      <h3>Produto Exemplo 2</h3>
-      <button onclick="falarWhatsApp('Produto Exemplo 2')">
-        Falar no WhatsApp
-      </button>
-    </div>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="images/produto1.jpg" alt="Produto 1">
+                <h3>Produto Premium</h3>
+                <p>Alta qualidade, durável e com excelente desempenho.</p>
+                <a class="btn" href="https://wa.me/244972712173" target="_blank">
+                    Comprar no WhatsApp
+                </a>
+            </div>
 
-    <!-- Produto 3 -->
-    <div class="product-card">
-      <img src="https://via.placeholder.com/300x200" alt="Produto 3">
-      <h3>Produto Exemplo 3</h3>
-      <button onclick="falarWhatsApp('Produto Exemplo 3')">
-        Falar no WhatsApp
-      </button>
-    </div>
+            <div class="product-card">
+                <img src="images/produto2.jpg" alt="Produto 2">
+                <h3>Melhor Custo-Benefício</h3>
+                <p>Perfeito para uso diário com preço acessível.</p>
+                <a class="btn" href="https://wa.me/244972712173" target="_blank">
+                    Comprar no WhatsApp
+                </a>
+            </div>
 
-  </section>
-</main>
+            <div class="product-card">
+                <img src="images/produto3.jpg" alt="Produto 3">
+                <h3>Produto Recomendado</h3>
+                <p>Um dos mais procurados pelos nossos clientes.</p>
+                <a class="btn" href="https://wa.me/244972712173" target="_blank">
+                    Comprar no WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
 
-<!-- Botão geral WhatsApp -->
-<a class="whatsapp-btn"
-   href="https://wa.me/244972712173"
-   target="_blank">
-   💬 WhatsApp
-</a>
+    <!-- VANTAGENS -->
+    <section class="benefits">
+        <h2>Por que escolher a 100% Business?</h2>
+        <ul>
+            <li>✔ Atendimento rápido via WhatsApp</li>
+            <li>✔ Produtos selecionados</li>
+            <li>✔ Preços acessíveis</li>
+            <li>✔ Confiança e transparência</li>
+        </ul>
+    </section>
 
-<script>
-  function falarWhatsApp(produto) {
-    const numero = '244972712173';
-    const mensagem = `Olá! Gostaria de conversar sobre o produto: ${produto}`;
-    const link = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
-    window.open(link, '_blank');
-  }
-</script>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>© 2026 – 100% Business</p>
+        <p>Atendimento rápido e seguro via WhatsApp</p>
+    </footer>
 
 </body>
 </html>
