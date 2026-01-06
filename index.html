@@ -1,81 +1,244 @@
-<!DOCTYPE html>
-<html lang="pt">
+<!DOCTYPE html><html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>100% Business | Produtos de Qualidade</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <meta charset="UTF-8">
+  <title>100% Business</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <style>
+    :root {
+      --cor-principal: #111;
+      --cor-secundaria: #25D366;
+      --cor-fundo: #f4f4f4;
+      --cor-card: #ffffff;
+    }
 
-    <!-- HEADER -->
-    <header class="header">
-        <h1>100% Business</h1>
-        <p>Seu parceiro confiável para produtos de qualidade e preços acessíveis</p>
-        <a class="btn" href="https://wa.me/244XXXXXXXXX" target="_blank">
-            Falar no WhatsApp
-        </a>
-    </header>
+    * { box-sizing: border-box; }
 
-    <!-- SOBRE -->
-    <section class="about">
-        <h2>Quem Somos</h2>
-        <p>
-            A <strong>100% Business</strong> é uma plataforma focada em oferecer produtos selecionados,
-            atendimento rápido e total confiança. Trabalhamos para garantir a melhor experiência de compra.
-        </p>
-    </section>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cor-fundo);
+      color: #333;
+    }
 
-    <!-- PRODUTOS -->
-    <section class="products">
-        <h2>Nossos Produtos</h2>
+    header {
+      background: var(--cor-principal);
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
 
-        <div class="product-grid">
-            <div class="product-card">
-                <img src="images/produto1.jpg" alt="Produto 1">
-                <h3>Produto Premium</h3>
-                <p>Alta qualidade, durável e com excelente desempenho.</p>
-                <a class="btn" href="https://wa.me/244972712173" target="_blank">
-                    Comprar no WhatsApp
-                </a>
-            </div>
+    nav {
+      background: #000;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px;
+    }
 
-            <div class="product-card">
-                <img src="images/produto2.jpg" alt="Produto 2">
-                <h3>Melhor Custo-Benefício</h3>
-                <p>Perfeito para uso diário com preço acessível.</p>
-                <a class="btn" href="https://wa.me/244972712173" target="_blank">
-                    Comprar no WhatsApp
-                </a>
-            </div>
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-            <div class="product-card">
-                <img src="images/produto3.jpg" alt="Produto 3">
-                <h3>Produto Recomendado</h3>
-                <p>Um dos mais procurados pelos nossos clientes.</p>
-                <a class="btn" href="https://wa.me/244972712173" target="_blank">
-                    Comprar no WhatsApp
-                </a>
-            </div>
-        </div>
-    </section>
+    section {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 15px;
+    }
 
-    <!-- VANTAGENS -->
-    <section class="benefits">
-        <h2>Por que escolher a 100% Business?</h2>
-        <ul>
-            <li>✔ Atendimento rápido via WhatsApp</li>
-            <li>✔ Produtos selecionados</li>
-            <li>✔ Preços acessíveis</li>
-            <li>✔ Confiança e transparência</li>
-        </ul>
-    </section>
+    h2 { text-align: center; }
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <p>© 2026 – 100% Business</p>
-        <p>Atendimento rápido e seguro via WhatsApp</p>
-    </footer>
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
 
-</body>
+    .product-card {
+      background: var(--cor-card);
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 15px;
+      text-align: center;
+    }
+
+    .product-info button {
+      background: var(--cor-secundaria);
+      color: #fff;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    footer {
+      background: var(--cor-principal);
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+    }
+
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--cor-secundaria);
+      color: #fff;
+      padding: 15px 22px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    #admin, #login {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 500px;
+      margin: auto;
+    }
+
+    #admin input, #admin select, #login input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    #admin button, #login button {
+      background: #000;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .remove-btn {
+      background: red;
+      margin-top: 8px;
+    }
+  </style></head>
+<body><header>
+  <h1 id="siteTitle">100% Business</h1>
+  <p id="siteSubtitle">Seu parceiro de confiança em vendas</p>
+</header><nav>
+  <a href="#produtos">Produtos</a>
+  <a href="#sobre">Sobre</a>
+  <a href="#contato">Contato</a>
+</nav><section id="produtos">
+  <h2>Produtos</h2>
+  <div class="products" id="productList"></div>
+</section><section id="sobre">
+  <h2>Sobre Nós</h2>
+  <p id="aboutText" style="text-align:center">Negócio dedicado a vendas com atendimento direto pelo WhatsApp.</p>
+</section><section id="contato">
+  <h2>Contato</h2>
+  <p style="text-align:center">📞 WhatsApp: +244 972 712 173</p>
+</section><section id="login">
+  <h2>Acesso do Proprietário</h2>
+  <input type="password" id="senha" placeholder="Senha do painel">
+  <button onclick="login()">Entrar</button>
+</section><section id="admin" style="display:none">
+  <h2>Painel Administrativo</h2>  <h3>Configurações</h3>
+  <input id="titleInput" placeholder="Título do site">
+  <input id="subtitleInput" placeholder="Subtítulo">
+  <textarea id="aboutInput" placeholder="Texto Sobre Nós" style="width:100%;height:80px"></textarea>
+  <button onclick="salvarConfig()">Salvar configurações</button>  <hr>  <h3>Adicionar produto</h3>
+  <input id="prodNome" placeholder="Nome do produto">
+  <input id="prodPreco" placeholder="Preço do produto">
+  <input id="prodImg" placeholder="Link da imagem">
+  <select id="prodCat">
+    <option value="Geral">Geral</option>
+    <option value="Eletrônicos">Eletrônicos</option>
+    <option value="Moda">Moda</option>
+    <option value="Serviços">Serviços</option>
+  </select>
+  <button onclick="addProduto()">Adicionar produto</button>
+</section><footer>
+  © 2026 - 100% Business
+</footer><a class="whatsapp-btn" href="https://wa.me/244972712173" target="_blank">💬 WhatsApp</a>
+
+<script>
+  const NUMERO_WHATSAPP = '244972712173';
+  const SENHA_ADMIN = '100business';
+
+  let produtos = JSON.parse(localStorage.getItem('produtos')) || [];
+  let config = JSON.parse(localStorage.getItem('config')) || {};
+
+  function login() {
+    if (senha.value === SENHA_ADMIN) {
+      login.style.display = 'none';
+      admin.style.display = 'block';
+    } else {
+      alert('Senha incorreta');
+    }
+  }
+
+  function falarWhatsApp(produto, preco) {
+    const msg = `Olá! Quero informações sobre: ${produto} | Preço: ${preco}`;
+    window.open(`https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
+  }
+
+  function renderProdutos() {
+    productList.innerHTML = '';
+    produtos.forEach((p, i) => {
+      productList.innerHTML += `
+        <div class="product-card">
+          <img src="${p.img}">
+          <div class="product-info">
+            <h3>${p.nome}</h3>
+            <p><strong>${p.preco}</strong></p>
+            <button onclick="falarWhatsApp('${p.nome}','${p.preco}')">Falar no WhatsApp</button>
+            ${admin.style.display === 'block' ? `<button class='remove-btn' onclick='remover(${i})'>Remover</button>` : ''}
+          </div>
+        </div>`;
+    });
+    localStorage.setItem('produtos', JSON.stringify(produtos));
+  }
+
+  function addProduto() {
+    const nome = prodNome.value;
+    const preco = prodPreco.value;
+    const img = prodImg.value;
+    const cat = prodCat.value;
+    if (!nome || !preco || !img) return alert('Preencha todos os campos');
+    produtos.push({ nome, preco, img, cat });
+    renderProdutos();
+  }
+
+  function remover(i) {
+    produtos.splice(i,1);
+    renderProdutos();
+  }
+
+  function salvarConfig() {
+    config.titulo = titleInput.value;
+    config.subtitulo = subtitleInput.value;
+    config.sobre = aboutInput.value;
+    localStorage.setItem('config', JSON.stringify(config));
+    aplicarConfig();
+  }
+
+  function aplicarConfig() {
+    if (config.titulo) siteTitle.innerText = config.titulo;
+    if (config.subtitulo) siteSubtitle.innerText = config.subtitulo;
+    if (config.sobre) aboutText.innerText = config.sobre;
+  }
+
+  aplicarConfig();
+  renderProdutos();
+</script></body>
 </html>
