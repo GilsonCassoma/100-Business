@@ -9,11 +9,12 @@
       --cor-principal: #111;
       --cor-secundaria: #25D366;
       --cor-fundo: #f4f4f4;
-      --cor-card: #ffffff;
+      --cor-card: #fff;
       --cor-badge: #ff5722;
       --cor-correto: #28a745;
       --cor-errado: #dc3545;
       --cor-tempo: #007bff;
+      --cor-hover: #eee;
     }
 
     * { box-sizing: border-box; }
@@ -26,8 +27,14 @@
     section { max-width: 1200px; margin: 30px auto; padding: 0 15px; }
     h2 { text-align: center; }
 
-    .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+    .banner { background: var(--cor-secundaria); color: #fff; padding: 15px; margin-bottom: 30px; border-radius: 12px; font-weight: bold; font-size: 18px; text-align: center; animation: slideBanner 5s infinite alternate; }
+    @keyframes slideBanner { 0% { transform: translateX(0);} 50% {transform: translateX(-5px);} 100% {transform: translateX(0);} }
 
+    .categories { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 25px; }
+    .category { padding: 8px 14px; background: var(--cor-principal); color: #fff; border-radius: 20px; cursor: pointer; transition: transform 0.2s, background 0.2s; }
+    .category:hover { transform: scale(1.05); background: var(--cor-secundaria); }
+
+    .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
     .product-card { background: var(--cor-card); border-radius: 12px; box-shadow: 0 6px 18px rgba(0,0,0,0.12); overflow: hidden; transition: transform .2s; position: relative; }
     .product-card:hover { transform: translateY(-5px); }
     .product-card img { width: 100%; height: 180px; object-fit: cover; }
@@ -37,6 +44,8 @@
     .product-info button:hover { transform: scale(1.05); }
 
     .badge { position: absolute; top: 10px; left: 10px; background: var(--cor-badge); color: #fff; padding: 5px 10px; border-radius: 6px; font-size: 12px; font-weight: bold; }
+
+    .stars { color: #FFD700; margin-bottom: 8px; }
 
     footer { background: var(--cor-principal); color: #fff; text-align: center; padding: 15px; margin-top: 40px; }
 
@@ -51,35 +60,27 @@
     #game { background: #fff; padding: 20px; border-radius: 12px; text-align: center; transition: opacity 0.5s ease; box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
     .question { font-size: 20px; margin-bottom: 20px; font-weight: bold; }
     .option { background: #eee; padding: 15px; margin: 10px 0; cursor: pointer; border-radius: 10px; transition: transform 0.2s, background-color 0.3s; }
-    .option:hover { transform: scale(1.05); background: #ddd; }
+    .option:hover { transform: scale(1.05); background: var(--cor-hover); }
     .option.correct { animation: pulseGreen 0.5s; }
     .option.wrong { animation: pulseRed 0.5s; }
 
-    .timer { font-size: 18px; margin-bottom: 15px; font-weight: bold; color: var(--cor-tempo); height: 24px; }
+    .timer { font-size: 18px; margin-bottom: 10px; font-weight: bold; color: var(--cor-tempo); height: 24px; }
     .timer-bar { height: 10px; background: var(--cor-tempo); border-radius: 6px; margin-bottom: 20px; transition: width 1s linear; }
 
-    @keyframes pulseGreen {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
-    }
-    @keyframes pulseRed {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
-    }
+    @keyframes pulseGreen { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+    @keyframes pulseRed { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
 
-    .banner { background: #25D366; color: #fff; text-align: center; padding: 15px; margin-bottom: 30px; border-radius: 12px; font-weight: bold; font-size: 18px; }
   </style></head>
 <body><header>
   <h1 id="siteTitle">100% Business</h1>
   <p id="siteSubtitle">Negócio moderno, tecnologia e vendas inteligentes</p>
-</header><div class="banner">🚀 Novidades e produtos em destaque!</div><nav>
-  <a href="#produtos">Produtos</a>
-  <a href="#sobre">Sobre</a>
-  <a href="#contato">Contato</a>
-  <a href="#game">Jogo Educativo</a>
-</nav><section id="produtos">
+</header><div class="banner">🚀 Confira os destaques, novidades e ofertas exclusivas!</div><div class="categories" id="categoryMenu">
+  <div class="category" onclick="filtrarCategoria('Todos')">Todos</div>
+  <div class="category" onclick="filtrarCategoria('Eletrônicos')">Eletrônicos</div>
+  <div class="category" onclick="filtrarCategoria('Moda')">Moda</div>
+  <div class="category" onclick="filtrarCategoria('Casa')">Casa</div>
+  <div class="category" onclick="filtrarCategoria('Tecnologia')">Tecnologia</div>
+</div><section id="produtos">
   <h2>Produtos</h2>
   <div class="products" id="productList"></div>
 </section><section id="sobre">
@@ -112,6 +113,7 @@
   <input id="prodNome" placeholder="Nome">
   <input id="prodPreco" placeholder="Preço">
   <input id="prodImg" placeholder="Imagem URL">
+  <input id="prodEstrelas" placeholder="Avaliação (1-5)">
   <select id="prodCategoria">
     <option value="Destaque">Destaque</option>
     <option value="Novo">Novo</option>
@@ -125,141 +127,59 @@
 <audio id="somAcerto" src="https://www.soundjay.com/button/sounds/button-4.mp3"></audio> <audio id="somErro" src="https://www.soundjay.com/button/sounds/button-10.mp3"></audio> <audio id="somVitoria" src="https://www.soundjay.com/button/sounds/button-3.mp3"></audio>
 
 <script>
-  const SENHA_ADMIN = '100business';
-  const NUMERO_WHATSAPP = '244972712173';
-  const TEMPO_POR_PERGUNTA = 20;
+const SENHA_ADMIN = '100business';
+const NUMERO_WHATSAPP = '244972712173';
+const TEMPO_POR_PERGUNTA = 20;
 
-  const loginSection = document.getElementById('login');
-  const adminSection = document.getElementById('admin');
-  const senhaInput = document.getElementById('senha');
-  const somAcerto = document.getElementById('somAcerto');
-  const somErro = document.getElementById('somErro');
-  const somVitoria = document.getElementById('somVitoria');
+let produtos = JSON.parse(localStorage.getItem('produtos')) || [];
+let config = JSON.parse(localStorage.getItem('config')) || {};
 
-  let produtos = JSON.parse(localStorage.getItem('produtos')) || [];
-  let config = JSON.parse(localStorage.getItem('config')) || {};
+const loginSection = document.getElementById('login');
+const adminSection = document.getElementById('admin');
+const senhaInput = document.getElementById('senha');
+const somAcerto = document.getElementById('somAcerto');
+const somErro = document.getElementById('somErro');
+const somVitoria = document.getElementById('somVitoria');
 
-  document.getElementById('loginBtn').addEventListener('click', function() {
-    if (senhaInput.value === SENHA_ADMIN) {
-      loginSection.style.display = 'none';
-      adminSection.style.display = 'block';
-      renderProdutos();
-    } else alert('Senha incorreta');
+loginBtn.addEventListener('click',()=>{ if(senhaInput.value===SENHA_ADMIN){ loginSection.style.display='none'; adminSection.style.display='block'; renderProdutos(); } else alert('Senha incorreta'); });
+
+function falarWhatsApp(nome, preco){ window.open(`https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent('Olá! Quero saber sobre '+nome+' - Preço: '+preco)}`); }
+
+function renderProdutos(filtro='Todos'){
+  const productList=document.getElementById('productList');
+  productList.innerHTML='';
+  produtos.filter(p=>filtro==='Todos'||p.categoria===filtro).forEach((p,i)=>{
+    let stars='★'.repeat(p.estrelas)+'☆'.repeat(5-p.estrelas);
+    let badgeHTML=p.categoria?`<div class='badge'>${p.categoria}</div>`:'';
+    productList.innerHTML+=`<div class='product-card'>${badgeHTML}<img src='${p.img}'><div class='product-info'><h3>${p.nome}</h3><div class='stars'>${stars}</div><p><strong>${p.preco}</strong></p><button onclick="falarWhatsApp('${p.nome}','${p.preco}')">WhatsApp</button>${adminSection.style.display==='block'?`<button class='remove-btn' onclick='remover(${i})'>Remover</button>`:''}</div></div>`;
   });
+  localStorage.setItem('produtos',JSON.stringify(produtos));
+}
 
-  function falarWhatsApp(nome, preco) {
-    window.open(`https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent('Olá! Quero saber sobre ' + nome + ' - Preço: ' + preco)}`);
-  }
+function addProduto(){ produtos.push({nome:prodNome.value,preco:prodPreco.value,img:prodImg.value,categoria:prodCategoria.value,estrelas:parseInt(prodEstrelas.value)||5}); renderProdutos(); }
+function remover(i){ produtos.splice(i,1); renderProdutos(); }
 
-  function renderProdutos() {
-    const productList = document.getElementById('productList');
-    productList.innerHTML = '';
-    produtos.forEach((p,i) => {
-      let badgeHTML = p.categoria ? `<div class='badge'>${p.categoria}</div>` : '';
-      productList.innerHTML += `
-      <div class="product-card">
-        ${badgeHTML}
-        <img src="${p.img}">
-        <div class="product-info">
-          <h3>${p.nome}</h3>
-          <p><strong>${p.preco}</strong></p>
-          <button onclick="falarWhatsApp('${p.nome}','${p.preco}')">WhatsApp</button>
-          ${adminSection.style.display === 'block' ? `<button class='remove-btn' onclick='remover(${i})'>Remover</button>` : ''}
-        </div>
-      </div>`;
-    });
-    localStorage.setItem('produtos', JSON.stringify(produtos));
-  }
+function salvarConfig(){ config.titulo=titleInput.value; config.subtitulo=subtitleInput.value; config.sobre=aboutInput.value; localStorage.setItem('config',JSON.stringify(config)); aplicarConfig(); }
+function aplicarConfig(){ if(config.titulo) siteTitle.innerText=config.titulo; if(config.subtitulo) siteSubtitle.innerText=config.subtitulo; if(config.sobre) aboutText.innerText=config.sobre; }
+aplicarConfig(); renderProdutos();
 
-  function addProduto() {
-    produtos.push({ nome: prodNome.value, preco: prodPreco.value, img: prodImg.value, categoria: prodCategoria.value });
-    renderProdutos();
-  }
+function filtrarCategoria(cat){ renderProdutos(cat); }
 
-  function remover(i) {
-    produtos.splice(i,1);
-    renderProdutos();
-  }
+// ----------------- JOGO ------------------
+const perguntas=[/* 30 perguntas tecnologia moderna */];
+let indice=0,pontos=0,acertosRodada=0,tempoRestante=TEMPO_POR_PERGUNTA,timer;
+const timerDiv=document.getElementById('timer');
+const timerBar=document.getElementById('timerBar');
 
-  function salvarConfig() {
-    config.titulo = titleInput.value;
-    config.subtitulo = subtitleInput.value;
-    config.sobre = aboutInput.value;
-    localStorage.setItem('config', JSON.stringify(config));
-    aplicarConfig();
-  }
+function mostrarPergunta(){
+  const p=perguntas[indice]; question.innerText=p.q; options.innerHTML=''; tempoRestante=TEMPO_POR_PERGUNTA; timerDiv.innerText=`Tempo restante: ${tempoRestante}s`; timerBar.style.width='100%';
+  p.o.forEach((opt,i)=>{ const div=document.createElement('div'); div.className='option'; div.innerText=opt; div.onclick=function(){responder(i,div);}; options.appendChild(div);});
+  clearInterval(timer); timer=setInterval(()=>{ tempoRestante--; timerDiv.innerText=`Tempo restante: ${tempoRestante}s`; timerBar.style.width=(tempoRestante/TEMPO_POR_PERGUNTA*100)+'%'; if(tempoRestante<=0){ clearInterval(timer); Array.from(options.children).forEach(c=>c.classList.add('wrong')); somErro.play(); setTimeout(proximaPergunta,700); } },1000);
+}
 
-  function aplicarConfig() {
-    if (config.titulo) siteTitle.innerText = config.titulo;
-    if (config.subtitulo) siteSubtitle.innerText = config.subtitulo;
-    if (config.sobre) aboutText.innerText = config.sobre;
-  }
+function responder(i,div){ clearInterval(timer); if(i===perguntas[indice].c){ div.classList.add('correct'); pontos+=3; acertosRodada++; somAcerto.play(); } else{ div.classList.add('wrong'); somErro.play(); } setTimeout(proximaPergunta,700); }
 
-  aplicarConfig();
-  renderProdutos();
-
-  // ------------------------ JOGO ------------------------
-  const perguntas = [ /* 30 perguntas sobre tecnologia moderna */ ];
-
-  let indice = 0, pontos = 0, acertosRodada = 0, tempoRestante = TEMPO_POR_PERGUNTA, timer;
-  const timerDiv = document.getElementById('timer');
-  const timerBar = document.getElementById('timerBar');
-
-  function mostrarPergunta() {
-    const p = perguntas[indice];
-    question.innerText = p.q;
-    options.innerHTML = '';
-    tempoRestante = TEMPO_POR_PERGUNTA;
-    timerDiv.innerText = `Tempo restante: ${tempoRestante}s`;
-    timerBar.style.width = '100%';
-
-    p.o.forEach((opt,i) => {
-      const div = document.createElement('div');
-      div.className = 'option';
-      div.innerText = opt;
-      div.onclick = function() { responder(i, div); };
-      options.appendChild(div);
-    });
-
-    clearInterval(timer);
-    timer = setInterval(() => {
-      tempoRestante--;
-      timerDiv.innerText = `Tempo restante: ${tempoRestante}s`;
-      timerBar.style.width = (tempoRestante/TEMPO_POR_PERGUNTA*100) + '%';
-      if(tempoRestante <= 0){
-        clearInterval(timer);
-        Array.from(options.children).forEach(c => c.classList.add('wrong'));
-        somErro.play();
-        setTimeout(proximaPergunta, 700);
-      }
-    },1000);
-  }
-
-  function responder(i, div) {
-    clearInterval(timer);
-    if(i === perguntas[indice].c){
-      div.classList.add('correct');
-      pontos += 3;
-      acertosRodada++;
-      somAcerto.play();
-    } else {
-      div.classList.add('wrong');
-      somErro.play();
-    }
-    setTimeout(proximaPergunta, 700);
-  }
-
-  function proximaPergunta(){
-    if(acertosRodada >= 10){
-      alert('🎉 Parabéns! Você venceu a rodada com 10 acertos!');
-      somVitoria.play();
-      acertosRodada = 0;
-    }
-    indice = (indice + 1) % perguntas.length;
-    score.innerText = pontos;
-    mostrarPergunta();
-  }
-
-  mostrarPergunta();
+function proximaPergunta(){ if(acertosRodada>=10){ alert('🎉 Parabéns! Você venceu a rodada com 10 acertos!'); somVitoria.play(); acertosRodada=0; } indice=(indice+1)%perguntas.length; score.innerText=pontos; mostrarPergunta(); }
+mostrarPergunta();
 </script></body>
 </html>
